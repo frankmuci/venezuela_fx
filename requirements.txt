@@ -30,3 +30,5 @@ termcolor
 jupyter
 notebook
 openpyxl
+matplotlib
+seaborn
