@@ -8,6 +8,11 @@ wheel>=0.29
 numpy
 pandas
 scikit-learn
+statsmodels
+tensorflow
+pmdarima
+sklearn
+
 
 # tests/linter
 black
