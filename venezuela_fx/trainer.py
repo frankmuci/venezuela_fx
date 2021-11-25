@@ -37,7 +37,7 @@ class Trainer(object):
         preproc_pipe = ColumnTransformer()
 
         self.pipeline = Pipeline([('preproc', preproc_pipe),
-                                  ('model', """Fill in with our model choice""" ])
+                                  ('model', """Fill in with our model choice""" )
 
     def run(self):
         self.set_pipeline()
