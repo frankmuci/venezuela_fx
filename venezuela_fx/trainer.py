@@ -86,8 +86,8 @@ if __name__ == "__main__":
     N = 100
     df = get_data_from_gcp(nrows=N)
     df = clean_data(df)
-    y = df["fare_amount"]
-    X = df.drop("fare_amount", axis=1)
+    #Still need to figure out how to divide up new data,
+    #Could simply split first 80% as train data and test on last 20%
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
     # Train and save model, locally and
     trainer = Trainer(X=X_train, y=y_train)
