@@ -1,17 +1,22 @@
 import joblib
+from joblib import dump
+from statsmodels.tsa.statespace.tools import set_mode
+from datetime import datetime
 from termcolor import colored
 import mlflow
-from venezuela_fx.data import get_data_from_gcp, clean_data
-from venezuela_fx.gcp import storage_upload
-from venezuela_fx.utils import compute_rmse
+from venezuela_fx.data import clean_data, get_local_data
+#from venezuela_fx.gcp import storage_upload
+#from venezuela_fx.utils import compute_rmse
 from venezuela_fx.params import MLFLOW_URI, EXPERIMENT_NAME, BUCKET_NAME, MODEL_VERSION, MODEL_VERSION
 from memoized_property import memoized_property
 from mlflow.tracking import MlflowClient
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
+from statsmodels.tsa.arima.model import ARIMA
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
 
 
 class Trainer(object):
@@ -37,24 +42,38 @@ class Trainer(object):
         preproc_pipe = ColumnTransformer()
 
         self.pipeline = Pipeline([('preproc', preproc_pipe),
-                                  ('model', """Fill in with our model choice""" )
+                                  ('model', LinearRegression() )])
 
-    def run(self):
+    def set_model(self, df):
+        print("getting model")
+        self.model = ARIMA(df, order=(30, 0, 0)).fit()
+        print("modelling training done!")
+
+    def run(self, df):
         self.set_pipeline()
-        self.mlflow_log_param()
-        self.pipeline.fit(self.X, self.y)
+        # self.mlflow_log_param()
+        self.pipeline.fit(df)
 
-    def evaluate(self, X_test, y_test):
+    def evaluate(self, test_df):
         """evaluates the pipeline on df_test and return the RMSE"""
-        y_pred = self.pipeline.predict(X_test)
-        rmse = compute_rmse(y_pred, y_test)
+        y_pred = self.pipeline.predict(test_df['DolarToday'])
+        rmse = compute_rmse(y_pred, test_df['DolarToday'])
         self.mlflow_log_metric("rmse", rmse)
         return round(rmse, 2)
 
+    def eval_mape():
+        #Want to evaluate using mean absolute percentage error
+        pass
+
+
     def save_model_locally(self):
         """Save the model into a .joblib format"""
-        joblib.dump(self.pipeline, 'model.joblib')
+        joblib.dump(self.model, 'model_1.joblib')
+        # tensorflow job model export
         print(colored("model.joblib saved locally", "green"))
+
+
+
 
     # MLFlow methods
     @memoized_property
@@ -83,17 +102,30 @@ class Trainer(object):
 
 if __name__ == "__main__":
     # Get and clean data
-    N = 100
-    df = get_data_from_gcp(nrows=N)
-    df = clean_data(df)
+
     #Still need to figure out how to divide up new data,
     #Could simply split first 80% as train data and test on last 20%
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-    # Train and save model, locally and
-    trainer = Trainer(X=X_train, y=y_train)
-    trainer.set_experiment_name('xp2')
-    trainer.run()
-    rmse = trainer.evaluate(X_test, y_test)
-    print(f"rmse: {rmse}")
+    # train_size = .8
+    # train_df = df[:len(df)*train_size]
+
+    # test_df = df[len(df) * train_size:]
+    # y_test = test_df['DolarToday']
+    # # Train and save model locally
+    # # trainer.set_experiment_name('xp2')
+    # #trainer.run()
+    # rmse = trainer.evaluate(X_test, y_test)
+    # #print(f"rmse: {rmse}")
+    # #storage_upload()
+
+    df = get_local_data()
+    print('Step 1 done')
+    df = clean_data(df)
+    print('Step 2 done')
+    y_dolar = df['Dolartoday']
+    print('Step 3 done')
+    trainer = Trainer(X=y_dolar, y=df)
+    print('Step 4 done')
+    trainer.set_model(df = y_dolar)
+    print('Step 5 done')
     trainer.save_model_locally()
-    storage_upload()
+    print('Step 6 done')
