@@ -17,7 +17,7 @@ class Model(object):
         self.model = model
         if self.df == None:
             self.df = pd.read_csv(
-                '/Users/daraalizadeh/code/frankmuci/venezuela_fx/venezuela_fx/data_csv/since_2012_master.csv'
+                '/Users/daraalizadeh/code/frankmuci/venezuela_fx/since_2012_master.csv'
             )
 
     def set_experiment_name(self, experiment_name):
@@ -121,7 +121,7 @@ class Model(object):
 
     def save_model_locally(self):
         """Save the model in .joblib format"""
-        joblib.dump(self.pipeline, 'model.joblib')
+        joblib.dump(self.pipeline, 'models/model.joblib')
         print("Suprisingly this seems to have worked...")
 
 
