@@ -39,3 +39,4 @@ openpyxl
 matplotlib
 seaborn
 plotly
+altair
