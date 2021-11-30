@@ -114,7 +114,7 @@ class Model(object):
         plt.plot(self.y_test)
 
     def sexy_plot(self):
-        """Altair plot of results vs. test"""
+        """Altair plot of results vs. test - julio was here"""
         df_pred = pd.DataFrame(np.exp(self.y_pred.cumsum())).reset_index()
         df_pred.columns = ['date', 'pred']
         base = alt.Chart(self.df.reset_index()).encode(x = alt.X('yearmonthdate(date):T'))
