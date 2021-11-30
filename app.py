@@ -177,3 +177,4 @@ elif nav_size == 'My Account':
     # xyz = model.prediction_graph()
     # st.line_chart(xyz)
     # model.save_model_locally()
+

@@ -5,6 +5,9 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import mean_squared_error,mean_absolute_error, r2_score, max_error
 import matplotlib.pyplot as plt
 import joblib
+import seaborn as sns
+import plotly
+import altair as alt
 
 
 
@@ -106,22 +109,25 @@ class Model(object):
         print(f"Max error: {self.me}")
         print(f"R2 score: {self.r2_score}")
 
-    def prediction_graph(self):
+    def plt_prediction_graph(self):
         """Plots prediction against test"""
-        # plt.plot(self.y_pred)
-        # plt.plot(self.y_test)
+        plt.plot(self.y_pred)
+        plt.plot(self.y_test)
 
-        dict = {
-            'pred': self.y_pred,
-            'test': self.y_test
-        }
-
-        return pd.DataFrame.from_dict(dict)
-
+    def sexy_plot(self):
+        """Altair plot of results vs. test - julio was here"""
+        df_pred = pd.DataFrame(np.exp(self.y_pred.cumsum())).reset_index()
+        df_pred.columns = ['date', 'pred']
+        base = alt.Chart(self.df.reset_index()).encode(x = alt.X('yearmonthdate(date):T'))
+        line_dolartoday = base.mark_line().encode(y = alt.Y('Dolartoday'))
+        base_pred = alt.Chart(df_pred).encode(alt.X('yearmonthdate(date):T'))
+        line_pred = base_pred.mark_line(color = 'orange').encode(alt.Y('pred'))
+        sample_plot = (line_pred+line_dolartoday).resolve_scale(y = 'independent')
+        return sample_plot
 
     def save_model_locally(self):
         """Save the model in .joblib format"""
-        joblib.dump(self.pipeline, 'models/model.joblib')
+        joblib.dump(self.pipeline, 'model.joblib')
         print("Suprisingly this seems to have worked...")
 
 
@@ -130,7 +136,6 @@ if __name__ == "__main__":
     # Dataframe -(date column must be called 'date')
     # target_distance - How far does the model need to predict
     # model - which regressor to be used
-
     def test(train = False):
         model = Model()
         model.set_experiment_name('Tester')

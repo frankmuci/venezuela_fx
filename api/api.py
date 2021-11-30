@@ -23,7 +23,6 @@ app.add_middleware(
 def index():
     return {'This is the test API': True}
 
-
 @app.get("/predict")
 def predict(num_days):
     # params1 = {
@@ -62,3 +61,4 @@ def predict(num_days):
 #     return {
 #         'Future FX Rate': float(prediction[0])
 #     }
+

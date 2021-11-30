@@ -76,9 +76,6 @@ class Trainer(object):
         # tensorflow job model export
         print(colored("model.joblib saved locally", "green"))
 
-
-
-
     # MLFlow methods
     @memoized_property
     def mlflow_client(self):
@@ -106,7 +103,6 @@ class Trainer(object):
 
 if __name__ == "__main__":
     # Get and clean data
-
     #Still need to figure out how to divide up new data,
     #Could simply split first 80% as train data and test on last 20%
     # train_size = .8
@@ -133,3 +129,4 @@ if __name__ == "__main__":
     print('Step 5 done')
     trainer.save_model_locally()
     print('Step 6 done')
+
