@@ -124,7 +124,6 @@ elif nav_size == 'FX Prediction':
     model.show_metrics()
     xyz = model.plt_prediction_graph()
     st.line_chart(xyz)
-    model.save_model_locally()
 
 
 elif nav_size == 'About Us':
