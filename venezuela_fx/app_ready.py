@@ -10,7 +10,7 @@ import joblib
 
 class Model(object):
     def __init__(self,df=None, target_distance=7, model=None):
-        """initialises a df to model """
+        """initialises a df to model - removed csvs"""
         self.pipeline = None
         self.df = df
         self.target_distance = target_distance
