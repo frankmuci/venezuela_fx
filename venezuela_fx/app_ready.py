@@ -13,14 +13,15 @@ import altair as alt
 
 class Model(object):
     def __init__(self,df=None, target_distance=7, model=None):
-        """initialises a df to model"""
+        """initialises a df to model - removed csvs"""
         self.pipeline = None
         self.df = df
         self.target_distance = target_distance
         self.model = model
         if self.df == None:
             self.df = pd.read_csv(
-                '/Users/joseph/code/Ward-cloud/project/venezuela_fx/venezuela_fx/data/since_2012_master.csv')
+                '/Users/daraalizadeh/code/frankmuci/venezuela_fx/since_2012_master.csv'
+            )
 
     def set_experiment_name(self, experiment_name):
         """name the monster"""
@@ -135,17 +136,22 @@ if __name__ == "__main__":
     # Dataframe -(date column must be called 'date')
     # target_distance - How far does the model need to predict
     # model - which regressor to be used
-    model = Model()
-    model.set_experiment_name('Tester')
-    model.sort_data()
-    model.splitting_data()
-    model.flattening_test()
-    model.flattening_train()
-    model.fixing_logged_data()
-    model.set_pipeline()
-    model.run()
-    # front_endy stuff
-    model.evaluate()
-    model.show_metrics()
-    model.prediction_graph()
-    model.save_model_locally()
+    def test(train = False):
+        model = Model()
+        model.set_experiment_name('Tester')
+        if train == True:
+            model.sort_data()
+            model.splitting_data()
+            model.flattening_test()
+            model.flattening_train()
+            model.fixing_logged_data()
+            model.set_pipeline()
+            model.run()
+        else:
+            # read processed csv
+            # load model
+            pass
+        model.evaluate()
+        model.show_metrics()
+        model.prediction_graph()
+        model.save_model_locally()

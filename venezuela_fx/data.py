@@ -1,18 +1,23 @@
 import pandas as pd
 from google.cloud import storage
-from venezuela_fx.params import BUCKET_NAME, BUCKET_TRAIN_DATA_PATH
+#from venezuela_fx.params import BUCKET_NAME, BUCKET_TRAIN_DATA_PATH
 
+# def get_data_from_gcp(nrows=10000, optimize=False, **kwargs):
+#     """method to get the training data (or a portion of it) from google cloud bucket"""
+#     # Add Client() here
+#     # Grab the DataFrame with Time Series from Google Cloud
+#     client = storage.Client()
+#     path = f"gs://{BUCKET_NAME}/{BUCKET_TRAIN_DATA_PATH}"
+#     df = pd.read_csv(path, nrows=nrows)
+#     return df
 
+def get_local_data():
+    #'/Users/daraalizadeh/code/frankmuci/venezuela_fx/
+    # path = '/Users/daraalizadeh/code/frankmuci/venezuela_fx/venezuela_fx/data_csv/since_2012_master.csv'
+    path = '/Users/daraalizadeh/code/frankmuci/venezuela_fx/venezuela_fx/data_csv/working_df.csv'
 
-def get_data_from_gcp(nrows=10000, optimize=False, **kwargs):
-    """method to get the training data (or a portion of it) from google cloud bucket"""
-    # Add Client() here
-    # Grab the DataFrame with Time Series from Google Cloud
-    client = storage.Client()
-    path = f"gs://{BUCKET_NAME}/{BUCKET_TRAIN_DATA_PATH}"
-    df = pd.read_csv(path, nrows=nrows)
+    df = pd.read_csv(path)
     return df
-
 
 def clean_data(df, test=False):
 
@@ -41,4 +46,7 @@ def clean_data(df, test=False):
 
 
 if __name__ == '__main__':
-    df = get_data_from_gcp()
+    df = get_local_data()
+    print('Created df')
+    df = clean_data(df)
+    print('Cleaned df')
