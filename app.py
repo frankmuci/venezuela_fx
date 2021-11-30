@@ -19,11 +19,10 @@ st.sidebar.markdown(f"""
     # Venezuela FX
     """)
 
-font_size = st.sidebar.markdown('This is a test')
+font_size = st.sidebar.markdown('Menu')
 nav_size = st.sidebar.radio('Select a page',('Home','What We Do','FX Prediction','About Us','My Account'))
 link = '[Data Source](https://tradingeconomics.com/venezuela/inflation-cpi)'
 st.sidebar.markdown(link, unsafe_allow_html=True)
-st.sidebar.subheader("This is a subheader")
 
 FONT_SIZE_CSS = f"""
 <style>

@@ -9,7 +9,7 @@ numpy
 pandas
 scikit-learn
 statsmodels
-tensorflow
+tensorflow==2.7.0
 pmdarima
 sklearn
 
@@ -38,3 +38,5 @@ matplotlib
 seaborn
 plotly
 altair
+
+streamlit
