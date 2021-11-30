@@ -89,15 +89,27 @@ elif nav_size == 'What We Do':
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 elif nav_size == 'FX Prediction':
     st.title("Our prediction for the Venezuelan FX rate over the next 30 days")
-    @st.cache
-    def get_line_chart_data():
+    # @st.cache
+    # def get_line_chart_data():
 
-        return pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
+    #     return pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
 
 
-    df = get_line_chart_data()
+    # df = get_line_chart_data()
 
-    st.line_chart(df)
+    # st.line_chart(df)
+
+    CSS2 = """
+    h1 {
+        color: #00247D;
+    }
+    .stApp {
+        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
+        background-size: cover;
+    }
+    """
+
+    st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
     model = Model()
     model.set_experiment_name('Tester')
@@ -114,18 +126,6 @@ elif nav_size == 'FX Prediction':
     st.line_chart(xyz)
     model.save_model_locally()
 
-
-    CSS2 = """
-    h1 {
-        color: #00247D;
-    }
-    .stApp {
-        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
-        background-size: cover;
-    }
-    """
-
-    st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
 elif nav_size == 'About Us':
 
