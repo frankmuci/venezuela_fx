@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 import numpy as np
 import base64
-from venezuela_fx.app_ready import Model
+from ..venezuela_fx.app_ready import Model
 
 
 st.set_page_config(
@@ -11,6 +11,38 @@ st.set_page_config(
     page_icon="🐍",
     layout="centered", # wide
     initial_sidebar_state="auto") # collapsed
+
+
+# st.markdown(
+#     '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">',
+#     unsafe_allow_html=True)
+
+# st.markdown("""
+# <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #ffffff50;">
+#   <a class="navbar-brand" href="https://youtube.com/dataprofessor" target="_blank">Venezuela FX Rate</a>
+#   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+#     <span class="navbar-toggler-icon"></span>
+#   </button>
+#   <div class="collapse navbar-collapse" id="navbarNav">
+#     <ul class="navbar-nav">
+#       <li class="nav-item active">
+#         <a class="nav-link disabled" href="#">Home <span class="sr-only">(current)</span></a>
+#       </li>
+#       <li class="nav-item">
+#         <a class="nav-link" href="#" target="_blank">What We Do</a>
+#       </li>
+#       <li class="nav-item">
+#         <a class="nav-link" href="#" target="_blank">About Us</a>
+#       </li>
+#       <li class="nav-item">
+#         <a class="nav-link" href="https://tradingeconomics.com/venezuela/inflation-cpi" target="_blank">Data Source</a>
+#       </li>
+#     </ul>
+#   </div>
+# </nav>
+# """,
+#             unsafe_allow_html=True)
+
 
 
 
@@ -23,7 +55,6 @@ font_size = st.sidebar.markdown('This is a test')
 nav_size = st.sidebar.radio('Select a page',('Home','What We Do','FX Prediction','About Us','My Account'))
 link = '[Data Source](https://tradingeconomics.com/venezuela/inflation-cpi)'
 st.sidebar.markdown(link, unsafe_allow_html=True)
-st.sidebar.subheader("This is a subheader")
 
 FONT_SIZE_CSS = f"""
 <style>
@@ -62,7 +93,6 @@ if nav_size == 'Home':
 
     st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
 elif nav_size == 'What We Do':
-    st.subheader('Background')
     st.markdown("Venezuela’s ongoing economic collapse likens episodes of state collapse or war. In the five\
                 years between 2013 and 2018, GDP has almost halved, oil production has fallen by two thirds, and\
                 imports per capita have collapsed over 85%. Inflation has climbed to 1.6 million percent while the\
@@ -73,9 +103,7 @@ elif nav_size == 'What We Do':
                 have lost weight involuntarily for two consecutive years. Between 10% and 16% of the population\
                 has left Venezuela, many as refugees, and the flow of outward migration is increasing. Recent\
                 sanctions on the oil sector and the current standoff for the presidency between Juan Guaidó and\
-                Nicolas Maduro suggest the situation will continue to deteriorate rapidly."                                                                                            )
-    st.subheader('Our Aim')
-    st.markdown('Filler words...')
+                Nicolas Maduro suggest the situation will continue to deteriorate rapidly."                                                                                           )
     CSS2 = """
     h1 {
         color: red;
@@ -88,7 +116,7 @@ elif nav_size == 'What We Do':
 
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 elif nav_size == 'FX Prediction':
-    st.title("Our prediction for the Venezuelan FX rate over the next 30 days")
+    st.write("Our prediction for the Venezuelan FX rate over the next 30 days")
     @st.cache
     def get_line_chart_data():
 
@@ -98,26 +126,9 @@ elif nav_size == 'FX Prediction':
     df = get_line_chart_data()
 
     st.line_chart(df)
-
-    model = Model()
-    model.set_experiment_name('Tester')
-    model.sort_data()
-    model.splitting_data()
-    model.flattening_test()
-    model.flattening_train()
-    model.fixing_logged_data()
-    model.set_pipeline()
-    model.run()
-    model.evaluate()
-    model.show_metrics()
-    xyz = model.prediction_graph()
-    st.line_chart(xyz)
-    model.save_model_locally()
-
-
     CSS2 = """
     h1 {
-        color: #00247D;
+        color: red;
     }
     .stApp {
         background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
@@ -128,8 +139,6 @@ elif nav_size == 'FX Prediction':
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
 elif nav_size == 'About Us':
-
-    st.subheader("Meet the team!")
 
 
     CSS2 = """
@@ -144,7 +153,10 @@ elif nav_size == 'About Us':
 
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
-elif nav_size == 'My Account':
+    st.write('Working on this...be patient!')
+
+
+else:
     st.write('Working on this...be patient!')
     CSS2 = """
     h1 {
@@ -158,22 +170,45 @@ elif nav_size == 'My Account':
 
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
-    # model = Model()
-    # model.set_experiment_name('Tester')
-    # if train == True:
-    #     model.sort_data()
-    #     model.splitting_data()
-    #     model.flattening_test()
-    #     model.flattening_train()
-    #     model.fixing_logged_data()
-    #     model.set_pipeline()
-    #     model.run()
-    # else:
-    #     # read processed csv
-    #     # load model
-    #     pass
-    # model.evaluate()
-    # model.show_metrics()
-    # xyz = model.prediction_graph()
-    # st.line_chart(xyz)
-    # model.save_model_locally()
+    model = Model()
+    model.set_experiment_name('Tester')
+    model.sort_data()
+    model.splitting_data()
+    model.flattening_test()
+    model.flattening_train()
+    model.fixing_logged_data()
+    model.set_pipeline()
+    model.run()
+    model.evaluate()
+    model.show_metrics()
+    model.prediction_graph()
+    model.save_model_locally()
+
+# st.markdown("Our prediction for the Venezuelan FX rate over the next 30 days")
+
+
+# @st.cache
+# def get_select_box_data():
+
+#     future_ranges = ['1 day','7 days', '30 days']
+
+#     return pd.DataFrame({
+#         'first column': future_ranges,
+
+#     })
+
+
+
+
+
+# CSS2 = """
+# h1 {
+#     color: red;
+# }
+# .stApp {
+#     background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
+#     background-size: cover;
+# }
+# """
+
+# st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)

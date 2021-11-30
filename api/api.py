@@ -3,8 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import joblib
-from os import pipe
-
+from os import getgid, pipe
+from venezuela_fx.data import clean_data, get_local_data
+from datetime import timedelta, datetime
 
 
 app = FastAPI()
@@ -24,9 +25,21 @@ def index():
 
 
 @app.get("/predict")
-def predict(days_ahead, weeks_ahead):
+def predict(num_days):
+    # params1 = {
+    #     'num_days': df.iloc[-1]['Unnamed: 0'] + timedelta(days=num_days)
+    # }
+
     #This will represent our initial API.
-    return {'FX Rate in 30 days': }
+    df = get_local_data()
+    df = clean_data(df)
+    pipeline = joblib.load('model_1.joblib')
+    print(pipeline)
+    prediction = pipeline.predict(df.iloc[-1]['Unnamed: 0'], df.iloc[-1]['Unnamed: 0'] + timedelta(days=num_days))
+    return {'FX Rate in 30 days': prediction}
+
+
+
 
 
 # params1 = {

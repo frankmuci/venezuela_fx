@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from venezuela_fx.data import get_local_data
 
-PATH_TO_LOCAL_MODEL = 'model.joblib'
+PATH_TO_LOCAL_MODEL = 'model_1.joblib'
 
 AWS_BUCKET_TEST_PATH = "s3://wagon-public-datasets/taxi-fare-test.csv"
 
@@ -84,4 +84,4 @@ if __name__ == '__main__':
     #nrows = 100
     #generate_submission_csv(nrows, kaggle_upload=False)
     df = get_local_data()
-    predict(df)
+    print(predict(df))

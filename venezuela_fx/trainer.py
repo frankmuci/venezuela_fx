@@ -16,6 +16,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import numpy as np
 
 
 
@@ -46,7 +47,10 @@ class Trainer(object):
 
     def set_model(self, df):
         print("getting model")
-        self.model = ARIMA(df, order=(30, 0, 0)).fit()
+        print(df)
+        df_ready = np.log(df).diff().dropna().replace(np.inf, 0.0).replace(-np.inf, 0.0)
+        print('df_ready worked')
+        self.model = ARIMA(df_ready, order=(30, 0, 0)).fit()
         print("modelling training done!")
 
     def run(self, df):

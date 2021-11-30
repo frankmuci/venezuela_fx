@@ -17,7 +17,8 @@ class Model(object):
         self.model = model
         if self.df == None:
             self.df = pd.read_csv(
-                '/Users/joseph/code/Ward-cloud/project/venezuela_fx/venezuela_fx/data/since_2012_master.csv')
+                '/Users/daraalizadeh/code/frankmuci/venezuela_fx/venezuela_fx/data_csv/since_2012_master.csv'
+            )
 
     def set_experiment_name(self, experiment_name):
         """name the monster"""
@@ -107,8 +108,16 @@ class Model(object):
 
     def prediction_graph(self):
         """Plots prediction against test"""
-        plt.plot(self.y_pred)
-        plt.plot(self.y_test)
+        # plt.plot(self.y_pred)
+        # plt.plot(self.y_test)
+
+        dict = {
+            'pred': self.y_pred,
+            'test': self.y_test
+        }
+
+        return pd.DataFrame.from_dict(dict)
+
 
     def save_model_locally(self):
         """Save the model in .joblib format"""
@@ -121,16 +130,23 @@ if __name__ == "__main__":
     # Dataframe -(date column must be called 'date')
     # target_distance - How far does the model need to predict
     # model - which regressor to be used
-    model = Model()
-    model.set_experiment_name('Tester')
-    model.sort_data()
-    model.splitting_data()
-    model.flattening_test()
-    model.flattening_train()
-    model.fixing_logged_data()
-    model.set_pipeline()
-    model.run()
-    model.evaluate()
-    model.show_metrics()
-    model.prediction_graph()
-    model.save_model_locally()
+
+    def test(train = False):
+        model = Model()
+        model.set_experiment_name('Tester')
+        if train == True:
+            model.sort_data()
+            model.splitting_data()
+            model.flattening_test()
+            model.flattening_train()
+            model.fixing_logged_data()
+            model.set_pipeline()
+            model.run()
+        else:
+            # read processed csv
+            # load model
+            pass
+        model.evaluate()
+        model.show_metrics()
+        model.prediction_graph()
+        model.save_model_locally()

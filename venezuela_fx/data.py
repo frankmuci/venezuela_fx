@@ -16,7 +16,9 @@ from google.cloud import storage
 
 def get_local_data():
     #'/Users/daraalizadeh/code/frankmuci/venezuela_fx/
-    path = '/Users/daraalizadeh/code/frankmuci/venezuela_fx/venezuela_fx/data_csv/since_2012_master.csv'
+    # path = '/Users/daraalizadeh/code/frankmuci/venezuela_fx/venezuela_fx/data_csv/since_2012_master.csv'
+    path = '/Users/daraalizadeh/code/frankmuci/venezuela_fx/venezuela_fx/data_csv/working_df.csv'
+
     df = pd.read_csv(path)
     return df
 
@@ -33,8 +35,8 @@ def clean_data(df, test=False):
     # Looking through Frank and Joe's notebooks cleaning the data,
     # repeat steps of filling null values (front-fill, back-fill), transforming
     # Dolartoday values into Log Values.
-    df['date'] = df['date'].apply(pd.to_datetime)
-    df.set_index('date', inplace=True)
+    df['Unnamed: 0'] = df['Unnamed: 0'].apply(pd.to_datetime)
+    df.set_index('Unnamed: 0', inplace=True)
     return df
     # unused_column = "Unnamed: 0"
     # if unused_column in df.keys():
