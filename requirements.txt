@@ -38,3 +38,4 @@ notebook
 openpyxl
 matplotlib
 seaborn
+plotly
