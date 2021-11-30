@@ -13,8 +13,6 @@ tensorflow
 pmdarima
 sklearn
 
-
-
 # tests/linter
 black
 coverage
@@ -40,4 +38,3 @@ matplotlib
 seaborn
 plotly
 altair
-
