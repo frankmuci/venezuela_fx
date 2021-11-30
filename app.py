@@ -110,7 +110,7 @@ elif nav_size == 'FX Prediction':
     model.run()
     model.evaluate()
     model.show_metrics()
-    xyz = model.prediction_graph()
+    xyz = model.plt_prediction_graph()
     st.line_chart(xyz)
     model.save_model_locally()
 
@@ -177,4 +177,3 @@ elif nav_size == 'My Account':
     # xyz = model.prediction_graph()
     # st.line_chart(xyz)
     # model.save_model_locally()
-
