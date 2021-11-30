@@ -5,3 +5,5 @@
 raw_data/
 **/__pycache__/
 .env
+models/
+venezuela_fx/data_csv/

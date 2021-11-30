@@ -13,7 +13,6 @@ tensorflow
 pmdarima
 sklearn
 
-
 # tests/linter
 black
 coverage
@@ -38,4 +37,5 @@ openpyxl
 matplotlib
 seaborn
 ARIMA
-
+plotly
+altair
