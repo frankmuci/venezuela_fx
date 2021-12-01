@@ -58,16 +58,16 @@ if nav_size == 'Home':
 
         unsafe_allow_html=True)
 
-    button_trial = st.button('Free Trial', key = 'button_1')
-    ('{color: #4F8BF9;\
-    border-radius: 20%;\
-    backgroud-color: #00FF00;\
-    height: 3em;\
-    width: 3em;\
-    }')
+    st.image(
+        'https://res.cloudinary.com/julioeq29/image/upload/v1638378009/button.png',
+        caption=None,
+        width=None,
+        use_column_width=None,
+        clamp=False,
+        channels="RGB",
+        output_format="auto")
 
-    if button_trial:
-        st.write('button has been clicked')
+
 
     CSS = """
     h1 {
@@ -86,13 +86,14 @@ elif nav_size == 'What We Do':
     st.markdown("""Despite Venezuela’s breathtaking economic collapse, life goes on. Millions of people and tens of thousands of firms continue to exchange goods and services daily -- many of them imported from abroad. Although the economy is rapidly dollarizing, a significant subset of businesses continues to price goods and services in Bolivars, the local currency.\
 
 Venezuela officially entered hyperinflation in 2017, with monthly inflation peaking around 200% in 2018/19 and slowing to around 10% per month in late 2021. The foreign exchange or FX rate loosely tracks consumer price inflation, although the latter has greatly outpaced the former in recent years, leading to higher living costs when measured in USD."""                                                                                                                                                                                                                                                                                                                                                                             )
-    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638352631/image.png',
-             caption=None,
-             width=None,
-             use_column_width=None,
-             clamp=False,
-             channels="RGB",
-             output_format="auto")
+    st.image(
+        'https://res.cloudinary.com/julioeq29/image/upload/v1638378009/graph.png',
+        caption=None,
+        width=None,
+        use_column_width=None,
+        clamp=False,
+        channels="RGB",
+        output_format="auto")
 
     st.subheader('Our Aim')
     st.markdown('Pricing merchandise imported in USD in Bolivars poses significant challenges due to the volatility of the FX rate. If firms charge too high a markup in local currency, their inventory turnover and sales slow. If firms charge too low a markup in local currency, their “profits” in Bolivars are rapidly diluted by FX depreciation and their balance sheet in USD shrinks.\ Having accurate forecasts for the FX rate can help businesses price products in Bolivars correctly -- high enough so that they make money (in USD), and low enough to ensure robust sales and inventory turnover. Our FX forecast gives firms more confidence about the time-value of the Bolivar and how to price their products.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  )
@@ -174,13 +175,14 @@ elif nav_size == 'FX Prediction':
 elif nav_size == 'About Us':
 
 
-    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638354394/image_1.png',
-            caption=None,
-            width=None,
-            use_column_width=None,
-            clamp=False,
-            channels="RGB",
-            output_format="auto")
+    st.image(
+        'https://res.cloudinary.com/julioeq29/image/upload/v1638378009/dara.png',
+        caption=None,
+        width=None,
+        use_column_width=None,
+        clamp=False,
+        channels="RGB",
+        output_format="auto")
 
     st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638354394/image_3.png',
             caption=None,
