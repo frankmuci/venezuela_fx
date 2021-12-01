@@ -31,13 +31,19 @@ class Model(object):
         """tidy data"""
         self.df['date'] = self.df['date'].apply(pd.to_datetime)
         self.df.set_index('date', inplace=True)
-        self.df = np.log(self.df).diff()
+        self.logged_df = np.log(self.df).diff()
+
+        # testtttt debug
+        import streamlit as st
+        st.dataframe(self.df)
+        st.dataframe(self.logged_df)
+        #
 
     def splitting_data(self):
         """split data into chronological train_test_split"""
-        self.train_size = int(np.round(self.df.shape[0]*0.7))
-        self.train = self.df.iloc[:self.train_size]
-        self.test = self.df.iloc[self.train_size:]
+        self.train_size = int(np.round(self.logged_df.shape[0]*0.7))
+        self.train = self.logged_df.iloc[:self.train_size]
+        self.test = self.logged_df.iloc[self.train_size:]
         self.X_train = self.train.drop(columns=['Dolartoday'])
         self.y_train = self.train['Dolartoday']
         self.X_test = self.test.drop(columns=['Dolartoday'])
