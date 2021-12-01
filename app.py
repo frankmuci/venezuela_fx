@@ -33,7 +33,7 @@ h1 {{
 """
 st.write(FONT_SIZE_CSS, unsafe_allow_html=True)
 
-st.write(nav_size)
+#st.write(nav_size)
 
 if nav_size == 'Home':
     st.markdown("""
@@ -55,8 +55,20 @@ if nav_size == 'Home':
 
     st.markdown(
         '<p class="big-font">Our mission is to predict the FX rate of\
-            Venezuelan Bolívar for the next 30 days</p>'                                                                                                                                                                                                                                ,
+            Venezuelan Bolívar for the next 30 days</p>'                                                                                                                                                                                                                                                                                        ,
         unsafe_allow_html=True)
+
+    button_trial = st.button('Free Trial', key = 'button_1')
+    ('{color: #4F8BF9;\
+    border-radius: 20%;\
+    backgroud-color: #00FF00;\
+    height: 3em;\
+    width: 3em;\
+    }')
+
+    if button_trial:
+        st.write('button has been clicked')
+
     CSS = """
     h1 {
         color: #00247D;
@@ -84,7 +96,7 @@ Venezuela officially entered hyperinflation in 2017, with monthly inflation peak
 
     st.subheader('Our Aim')
     st.markdown('Pricing merchandise imported in USD in Bolivars poses significant challenges due to the volatility of the FX rate. If firms charge too high a markup in local currency, their inventory turnover and sales slow. If firms charge too low a markup in local currency, their “profits” in Bolivars are rapidly diluted by FX depreciation and their balance sheet in USD shrinks.\
-                Having accurate forecasts for the FX rate can help businesses price products in Bolivars correctly -- high enough so that they make money (in USD), and low enough to ensure robust sales and inventory turnover. Our FX forecast gives firms more confidence about the time-value of the Bolivar and how to price their products.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               )
+                Having accurate forecasts for the FX rate can help businesses price products in Bolivars correctly -- high enough so that they make money (in USD), and low enough to ensure robust sales and inventory turnover. Our FX forecast gives firms more confidence about the time-value of the Bolivar and how to price their products.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  )
     CSS2 = """
     h1 {
         color: #00247D;
