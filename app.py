@@ -55,7 +55,7 @@ if nav_size == 'Home':
 
     st.markdown(
         '<p class="big-font">Our mission is to predict the FX rate of\
-            Venezuelan Bolívar for the next 30 days</p>'                                                                                                                                                                                                                                ,
+            Venezuelan Bolívar for the next 30 days</p>'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,
         unsafe_allow_html=True)
     CSS = """
     h1 {
@@ -84,7 +84,7 @@ Venezuela officially entered hyperinflation in 2017, with monthly inflation peak
 
     st.subheader('Our Aim')
     st.markdown('Pricing merchandise imported in USD in Bolivars poses significant challenges due to the volatility of the FX rate. If firms charge too high a markup in local currency, their inventory turnover and sales slow. If firms charge too low a markup in local currency, their “profits” in Bolivars are rapidly diluted by FX depreciation and their balance sheet in USD shrinks.\
-                Having accurate forecasts for the FX rate can help businesses price products in Bolivars correctly -- high enough so that they make money (in USD), and low enough to ensure robust sales and inventory turnover. Our FX forecast gives firms more confidence about the time-value of the Bolivar and how to price their products.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               )
+                Having accurate forecasts for the FX rate can help businesses price products in Bolivars correctly -- high enough so that they make money (in USD), and low enough to ensure robust sales and inventory turnover. Our FX forecast gives firms more confidence about the time-value of the Bolivar and how to price their products.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 )
     CSS2 = """
     h1 {
         color: #00247D;
@@ -97,7 +97,7 @@ Venezuela officially entered hyperinflation in 2017, with monthly inflation peak
 
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 elif nav_size == 'FX Prediction':
-    st.title("Our prediction for the Venezuelan FX rate over the next 30 days")
+    st.title("Modeling the FX rate of Venezula")
     # @st.cache
     # def get_line_chart_data():
 
@@ -107,6 +107,25 @@ elif nav_size == 'FX Prediction':
     # df = get_line_chart_data()
 
     # st.line_chart(df)
+
+    st.image(
+        'https://res.cloudinary.com/julioeq29/image/upload/v1638369332/image_7.png',
+        caption=
+        "Our Machine Learning model compared to the actual Bolívar-USD FX rate",
+        width=None,
+        use_column_width=None,
+        clamp=False,
+        channels="RGB",
+        output_format="auto")
+
+    st.image(
+        'https://res.cloudinary.com/julioeq29/image/upload/v1638369336/Screen_Shot_2021-12-01_at_1.22.04_PM.png',
+        caption="Due to the scale of the data, a logorithmic tranformation was required for our models to work",
+        width=None,
+        use_column_width=None,
+        clamp=False,
+        channels="RGB",
+        output_format="auto")
 
     CSS2 = """
     h1 {
@@ -118,23 +137,25 @@ elif nav_size == 'FX Prediction':
     }
     """
 
-    st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
-    model = Model()
-    model.set_experiment_name('Tester')
-    model.sort_data()
-    model.splitting_data()
-    model.flattening_test()
-    model.flattening_train()
-    model.fixing_logged_data()
-    model.set_pipeline()
-    model.run()
-    model.evaluate()
-    model.show_metrics()
-    xyz = model.plt_prediction_graph()
-    st.line_chart(xyz)
-    abc = model.sexy_plot()
-    st.altair_chart(abc)
+
+    # st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
+
+    # model = Model()
+    # model.set_experiment_name('Tester')
+    # model.sort_data()
+    # model.splitting_data()
+    # model.flattening_test()
+    # model.flattening_train()
+    # model.fixing_logged_data()
+    # model.set_pipeline()
+    # model.run()
+    # model.evaluate()
+    # model.show_metrics()
+    # xyz = model.plt_prediction_graph()
+    # st.line_chart(xyz)
+    # abc = model.sexy_plot()
+    # st.altair_chart(abc)
 
 
 
