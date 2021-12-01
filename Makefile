@@ -55,6 +55,7 @@ pypi:
 	@twine upload dist/* -u $(PYPI_USERNAME)
 
 
+
 # GCP Stuff
 
 # path to the file to upload to GCP (the path to the file should be absolute or should match the directory where the make command is ran)
@@ -71,3 +72,8 @@ BUCKET_NAME = "venezuelafxbucket2820572"
 upload_data:
     # @gsutil cp train_1k.csv gs://wagon-ml-my-bucket-name/data/train_1k.csv
     @gsutil cp ${LOCAL_PATH} gs://${BUCKET_NAME}/${BUCKET_FOLDER}/${BUCKET_FILE_NAME}
+
+
+run_streamlit:
+  streamlit run app.py
+

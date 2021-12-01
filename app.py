@@ -9,21 +9,20 @@ from venezuela_fx.app_ready import Model
 st.set_page_config(
     page_title="Quick reference", # => Quick reference - Streamlit
     page_icon="🐍",
-    layout="centered", # wide
+    layout="wide", # wide
     initial_sidebar_state="auto") # collapsed
 
 
 
 
-st.sidebar.markdown(f"""
-    # Venezuela FX
+st.sidebar.title(f"""
+    Venezuela FX
     """)
 
-font_size = st.sidebar.markdown('This is a test')
+font_size = st.sidebar.markdown('Menu')
 nav_size = st.sidebar.radio('Select a page',('Home','What We Do','FX Prediction','About Us','My Account'))
 link = '[Data Source](https://tradingeconomics.com/venezuela/inflation-cpi)'
 st.sidebar.markdown(link, unsafe_allow_html=True)
-st.sidebar.subheader("This is a subheader")
 
 FONT_SIZE_CSS = f"""
 <style>
@@ -37,21 +36,30 @@ st.write(FONT_SIZE_CSS, unsafe_allow_html=True)
 st.write(nav_size)
 
 if nav_size == 'Home':
-    st.header('**Bolívar to USD**')
     st.markdown("""
-<style>
-.big-font {
-    font-size:30px !important;
-    color: White
-}
-</style>
-""",
+    <style>
+    .big-font {
+    font-size:50px !important;
+    color: White;
+    font: 'monospace'
+    }
+    </style>
+    """,
             unsafe_allow_html=True)
 
-    st.markdown('<p class="big-font">Our mission is .... !!</p>', unsafe_allow_html=True)
+
+    st.markdown(""" <style> .big-font {
+        font-size:80px ; font-family: 'monospace'; color: ##FFFFFF;}
+            </style> """,
+                unsafe_allow_html=True)
+
+    st.markdown(
+        '<p class="big-font">Our mission is to predict the FX rate of\
+            Venezuelan Bolívar for the next 30 days</p>'                                                                                                                                                                                                                                ,
+        unsafe_allow_html=True)
     CSS = """
     h1 {
-        color: red;
+        color: #00247D;
     }
     .stApp {
         background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638265996/Screenshot_2021-11-30_at_09.45.10.png);
@@ -62,23 +70,24 @@ if nav_size == 'Home':
 
     st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
 elif nav_size == 'What We Do':
-    st.subheader('Background')
-    st.markdown("Venezuela’s ongoing economic collapse likens episodes of state collapse or war. In the five\
-                years between 2013 and 2018, GDP has almost halved, oil production has fallen by two thirds, and\
-                imports per capita have collapsed over 85%. Inflation has climbed to 1.6 million percent while the\
-                real value of the money supply has fallen over 99% since 2013. Minimum wages measured in\
-                terms of the cheapest food calorie have declined from 52,000 to under 2,700 calories per month,\
-                implying that households that earn minimum wages cannot afford basic sustenance, not to mention\
-                health, transportation or other expenditures. Survey data shows that over two thirds of Venezuelans\
-                have lost weight involuntarily for two consecutive years. Between 10% and 16% of the population\
-                has left Venezuela, many as refugees, and the flow of outward migration is increasing. Recent\
-                sanctions on the oil sector and the current standoff for the presidency between Juan Guaidó and\
-                Nicolas Maduro suggest the situation will continue to deteriorate rapidly."                                                                                            )
+    st.subheader('Background Context')
+    st.markdown("""Despite Venezuela’s breathtaking economic collapse, life goes on. Millions of people and tens of thousands of firms continue to exchange goods and services daily -- many of them imported from abroad. Although the economy is rapidly dollarizing, a significant subset of businesses continues to price goods and services in Bolivars, the local currency.\
+
+Venezuela officially entered hyperinflation in 2017, with monthly inflation peaking around 200% in 2018/19 and slowing to around 10% per month in late 2021. The foreign exchange or FX rate loosely tracks consumer price inflation, although the latter has greatly outpaced the former in recent years, leading to higher living costs when measured in USD."""                                                                                                                                                                                                                                                                                                                                                                             )
+    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638352631/image.png',
+             caption=None,
+             width=None,
+             use_column_width=None,
+             clamp=False,
+             channels="RGB",
+             output_format="auto")
+
     st.subheader('Our Aim')
-    st.markdown('Filler words...')
+    st.markdown('Pricing merchandise imported in USD in Bolivars poses significant challenges due to the volatility of the FX rate. If firms charge too high a markup in local currency, their inventory turnover and sales slow. If firms charge too low a markup in local currency, their “profits” in Bolivars are rapidly diluted by FX depreciation and their balance sheet in USD shrinks.\
+                Having accurate forecasts for the FX rate can help businesses price products in Bolivars correctly -- high enough so that they make money (in USD), and low enough to ensure robust sales and inventory turnover. Our FX forecast gives firms more confidence about the time-value of the Bolivar and how to price their products.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               )
     CSS2 = """
     h1 {
-        color: red;
+        color: #00247D;
     }
     .stApp {
         background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
@@ -89,15 +98,27 @@ elif nav_size == 'What We Do':
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 elif nav_size == 'FX Prediction':
     st.title("Our prediction for the Venezuelan FX rate over the next 30 days")
-    @st.cache
-    def get_line_chart_data():
+    # @st.cache
+    # def get_line_chart_data():
 
-        return pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
+    #     return pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
 
 
-    df = get_line_chart_data()
+    # df = get_line_chart_data()
 
-    st.line_chart(df)
+    # st.line_chart(df)
+
+    CSS2 = """
+    h1 {
+        color: #00247D;
+    }
+    .stApp {
+        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
+        background-size: cover;
+    }
+    """
+
+    st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
     model = Model()
     model.set_experiment_name('Tester')
@@ -112,7 +133,48 @@ elif nav_size == 'FX Prediction':
     model.show_metrics()
     xyz = model.plt_prediction_graph()
     st.line_chart(xyz)
-    model.save_model_locally()
+    abc = model.sexy_plot()
+    st.altair_chart(abc)
+
+
+
+elif nav_size == 'About Us':
+
+
+    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638354394/image_1.png',
+            caption=None,
+            width=None,
+            use_column_width=None,
+            clamp=False,
+            channels="RGB",
+            output_format="auto")
+
+    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638354394/image_3.png',
+            caption=None,
+            width=None,
+            use_column_width=None,
+            clamp=False,
+            channels="RGB",
+            output_format="auto")
+
+
+    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638354394/image_2.png',
+            caption=None,
+            width=None,
+            use_column_width=None,
+            clamp=False,
+            channels="RGB",
+            output_format="auto")
+
+
+    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638354394/image_4.png',
+            caption=None,
+            width=None,
+            use_column_width=None,
+            clamp=False,
+            channels="RGB",
+            output_format="auto")
+
 
 
     CSS2 = """
@@ -120,24 +182,7 @@ elif nav_size == 'FX Prediction':
         color: #00247D;
     }
     .stApp {
-        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
-        background-size: cover;
-    }
-    """
-
-    st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
-
-elif nav_size == 'About Us':
-
-    st.subheader("Meet the team!")
-
-
-    CSS2 = """
-    h1 {
-        color: red;
-    }
-    .stApp {
-        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
+        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638265996/Screenshot_2021-11-30_at_09.45.10.png);
         background-size: cover;
     }
     """
@@ -145,16 +190,23 @@ elif nav_size == 'About Us':
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
 elif nav_size == 'My Account':
-    st.write('Working on this...be patient!')
     CSS2 = """
     h1 {
-        color: red;
+        color: #00247D;
     }
     .stApp {
-        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638270556/Screenshot_2021-11-30_at_11.07.04.png);
+        background-image: url(https://res.cloudinary.com/julioeq29/image/upload/v1638265996/Screenshot_2021-11-30_at_09.45.10.png);
         background-size: cover;
     }
     """
+
+    st.image('https://res.cloudinary.com/julioeq29/image/upload/v1638358418/image_6.png',
+        caption=None,
+        width=None,
+        use_column_width=None,
+        clamp=False,
+        channels="RGB",
+        output_format="auto")
 
     st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 

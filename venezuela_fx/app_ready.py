@@ -114,6 +114,13 @@ class Model(object):
         plt.plot(self.y_pred)
         plt.plot(self.y_test)
 
+        dict = {
+            'y_pred' : self.y_pred,
+            'y_test' : self.y_test
+        }
+
+        return pd.DataFrame.from_dict(dict)
+
     def sexy_plot(self):
         """Altair plot of results vs. test - julio was here"""
         df_pred = pd.DataFrame(np.exp(self.y_pred.cumsum())).reset_index()
