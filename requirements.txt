@@ -39,5 +39,4 @@ seaborn
 ARIMA
 plotly
 altair
-
 streamlit
