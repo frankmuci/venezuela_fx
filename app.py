@@ -152,7 +152,7 @@ elif nav_size == 'FX Prediction':
 
 
 
-    # st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
+    st.write(f'<style>{CSS2}</style>', unsafe_allow_html=True)
 
     # model = Model()
     # model.set_experiment_name('Tester')
